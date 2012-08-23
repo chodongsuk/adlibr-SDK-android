@@ -87,6 +87,24 @@ public class AdlibTestProjectActivity extends AdlibActivity {
         // http://adlibr.com/admin/myapplist.jsp
         AdlibConfig.getInstance().setAdlibKey("ADLIB - API - KEY");
 
+         /*
+         // Locale 별 다른 스케줄을 적용하신다면,
+         Locale locale = this.getResources().getConfiguration().locale;
+         String lc = locale.getLanguage();
+         
+         if(lc.equals("ko"))
+         {
+         // 다국어 스케줄을 설정하시려면 애드립에서 별도로 키를 생성하시고 해당 키를 적용해주세요.
+         AdlibConfig.getInstance().setAdlibKey("대한민국 광고 스케줄링");
+         }
+         else
+         {
+         // 다국어 스케줄을 설정하시려면 애드립에서 별도로 키를 생성하시고 해당 키를 적용해주세요.
+         AdlibConfig.getInstance().setAdlibKey("그밖의 나라");
+         }
+         */
+
+        
         // 광고 타겟팅을 위한 사용자 정보를 입력합니다. (option)
         // gender(M/F/0), age(10/20/30/40/0), lat(위도), lon(경도)
         AdlibConfig.getInstance().setAdInfo("M", "10", "31.111", "127.111");
