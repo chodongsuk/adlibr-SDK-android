@@ -104,11 +104,18 @@ public class AdlibTestProjectActivity extends AdlibActivity {
          }
          */
 
-        
-        // 광고 타겟팅을 위한 사용자 정보를 입력합니다. (option)
-        // gender(M/F/0), age(10/20/30/40/0), lat(위도), lon(경도)
-        AdlibConfig.getInstance().setAdInfo("M", "10", "31.111", "127.111");
-                
+	/*
+	// 광고뷰가 없는 activity 에서는 listener 대신 아래와 같은 방법으로 설정한 현재 버전을 가져올 수 있습니다.
+	// 애드립에서 설정한 버전정보를 아래와 같이 수신합니다.
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+          @Override
+          public void run() {
+       	  	String ver = _amanager.getCurrentVersion();
+          }
+        }, 1000);
+	*/
+
         // 클라이언트 버전관리를 위한 리스너 추가
         // 서버에서 클라이언트 버전을 관리하여 사용자에게 업데이트를 안내할 수 있습니다. (option)
         this.setVersionCheckingListner(new AdlibVersionCheckingListener(){
