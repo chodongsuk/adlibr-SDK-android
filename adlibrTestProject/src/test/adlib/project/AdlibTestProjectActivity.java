@@ -75,7 +75,6 @@ public class AdlibTestProjectActivity extends AdlibActivity {
 
     	// 쓰지 않을 광고플랫폼은 삭제해주세요.
         AdlibConfig.getInstance().bindPlatform("ADAM","test.adlib.project.ads.SubAdlibAdViewAdam");
-        AdlibConfig.getInstance().bindPlatform("ADCUBE","test.adlib.project.ads.SubAdlibAdViewAdcube");
         AdlibConfig.getInstance().bindPlatform("ADMOB","test.adlib.project.ads.SubAdlibAdViewAdmob");
         AdlibConfig.getInstance().bindPlatform("CAULY","test.adlib.project.ads.SubAdlibAdViewCauly");
         AdlibConfig.getInstance().bindPlatform("TAD","test.adlib.project.ads.SubAdlibAdViewTAD");
