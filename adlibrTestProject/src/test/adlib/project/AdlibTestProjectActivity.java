@@ -71,7 +71,7 @@ public class AdlibTestProjectActivity extends AdlibActivity {
     	// 제휴 플랫폼을 연결합니다.
     	AdlibConfig.getInstance().bindPlatform("INMOBI","test.adlib.project.ads.SubAdlibAdViewInmobi");
     	// adlibr.com 에서는 제휴 플랫폼에서 발생한 수익의 일부를 reward point로 더 적립해드립니다.
-    	// 자세한 사항은 http://adlibr.com/rpoint.jsp 를 참조해주세요.
+    	// 자세한 사항은 http://adlibr.com/features/rpoint 를 참조해주세요.
 
     	// 쓰지 않을 광고플랫폼은 삭제해주세요.
         AdlibConfig.getInstance().bindPlatform("ADAM","test.adlib.project.ads.SubAdlibAdViewAdam");
@@ -84,7 +84,7 @@ public class AdlibTestProjectActivity extends AdlibActivity {
         
         // SMART* dialog 노출 시점 선택시 / setAdlibKey 키가 호출되는 activity 가 시작 activity 이며 해당 activity가 종료되면 app 종료로 인식합니다.
         // adlibr.com 에서 발급받은 api 키를 입력합니다.
-        // http://adlibr.com/admin/myapplist.jsp
+        // https://sec.adlibr.com/admin/dashboard.jsp
         AdlibConfig.getInstance().setAdlibKey("ADLIB - API - KEY");        
                 
 
