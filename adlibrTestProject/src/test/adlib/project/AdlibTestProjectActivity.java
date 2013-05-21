@@ -2,12 +2,15 @@ package test.adlib.project;
 
 import com.mocoplex.adlib.AdlibActivity;
 import com.mocoplex.adlib.AdlibConfig;
+import com.mocoplex.adlib.AdlibRewardIcon;
+import com.mocoplex.adlib.AdlibRewardLink;
 import com.mocoplex.adlib.AdlibManager.AdlibVersionCheckingListener;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 
 // 광고 스케줄링을 위해 AdlibActivity 를 상속받은 activity 를 생성합니다.
@@ -60,6 +63,19 @@ public class AdlibTestProjectActivity extends AdlibActivity {
         	
         };
         this.findViewById(R.id.btn3).setOnClickListener(cl);        
+        
+        // 리워드 링크 아이콘을 사용하지 않고 버튼 클릭 이벤트 등의 별로 이벤트로 구현하고 싶으시면 아래와 같이 showRewardLink(Context ctx, String rewardLinkId) 함수를 호출하면 됩니다.
+        cl = new View.OnClickListener()
+        {
+			@Override
+			public void onClick(View v) {
+				
+				// rewardLinkId는 애드립 홈페이지에서 발급받은 링크 ID로 대체하세요.
+				AdlibRewardLink.getInstance().showRewardLink(AdlibTestProjectActivity.this, "5184d07ae4b03c9009dfa5ae");	//  <-- 테스트 키 입니다.			
+			}
+        	
+        };
+        this.findViewById(R.id.btn4).setOnClickListener(cl);
     }
     
     // AndroidManifest.xml에 권한과 activity를 추가하여야 합니다.     
@@ -154,4 +170,36 @@ public class AdlibTestProjectActivity extends AdlibActivity {
         */
         
     }
+    
+    @Override
+	protected void onPause() {
+		
+		// 리워드 링크 아이콘을 사용하는 Activity 에서는 반드시 onPause 에서 pauseRewardLink(Context ctx) 를 호출해 주세요.
+		AdlibRewardLink.getInstance().pauseRewardLink(this);
+		super.onPause();
+	}
+
+	@Override
+	protected void onResume() {
+		
+		// 리워드 링크 아이콘을 배치하기 위해서는 Activity 의 onResume 에서 rewardLink(Context ctx, String rewardLinkId, int x, int y, int align) 를 호출해 주세요.
+		
+		// x축, y축 padding은 아래와 같이 pixel 값(+)으로 직접 계산해 주셔야 합니다.
+		Display mDisplay= getWindowManager().getDefaultDisplay();
+    	int width = mDisplay.getWidth();
+    	int h = dpToPx(90);
+    	
+    	// rewardLinkId는 애드립 홈페이지에서 발급받은 링크 ID로 대체하세요.
+    	// align 위치를 기준으로 x축으로 x pixel, y축으로 y pixel만큼 이동한 지점에 아이콘이 배치됩니다.
+    	// 아이콘 위치는 아이콘의 중심점 기준입니다.
+    	// 아래의 경우 좌측 하단을 중심으로 아이콘의 중심점이 x축으로 디바이스 width의 절반만큼, y축으로 90dp만큼 이동한 위치에 아이콘이 배치됩니다.
+		AdlibRewardLink.getInstance().rewardLink(this, "5184d07ae4b03c9009dfa5ae", width/2, h, AdlibRewardIcon.ALIGN_LEFT_BOTTOM);  //  <-- 테스트 키 입니다.
+		super.onResume();
+	}
+	
+	public int dpToPx(int dp) {
+		return (int) (dp
+				* getResources().getDisplayMetrics().density + 0.5f);
+	}
+	
 }
