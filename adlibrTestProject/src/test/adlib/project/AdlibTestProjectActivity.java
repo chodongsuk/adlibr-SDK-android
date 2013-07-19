@@ -10,8 +10,11 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Display;
 import android.view.View;
+import android.widget.Toast;
 
 // 광고 스케줄링을 위해 AdlibActivity 를 상속받은 activity 를 생성합니다.
 public class AdlibTestProjectActivity extends AdlibActivity {
@@ -76,6 +79,17 @@ public class AdlibTestProjectActivity extends AdlibActivity {
         	
         };
         this.findViewById(R.id.btn4).setOnClickListener(cl);
+        
+        cl = new View.OnClickListener()
+        {
+			@Override
+			public void onClick(View v) {
+				
+				load();
+			}
+        	
+        };
+        this.findViewById(R.id.btn5).setOnClickListener(cl);
     }
     
     // AndroidManifest.xml에 권한과 activity를 추가하여야 합니다.     
@@ -92,6 +106,7 @@ public class AdlibTestProjectActivity extends AdlibActivity {
         AdlibConfig.getInstance().bindPlatform("NAVER","test.adlib.project.ads.SubAdlibAdViewNaverAdPost");
         AdlibConfig.getInstance().bindPlatform("SHALLWEAD","test.adlib.project.ads.SubAdlibAdViewShallWeAd");
         AdlibConfig.getInstance().bindPlatform("INMOBI","test.adlib.project.ads.SubAdlibAdViewInmobi");
+        AdlibConfig.getInstance().bindPlatform("MMEDIA","test.adlib.project.ads.SubAdlibAdViewMMedia");
         // 쓰지 않을 플랫폼은 JAR 파일 및 test.adlib.project.ads 경로에서 삭제하면 최종 바이너리 크기를 줄일 수 있습니다.        
         
         // SMART* dialog 노출 시점 선택시 / setAdlibKey 키가 호출되는 activity 가 시작 activity 이며 해당 activity가 종료되면 app 종료로 인식합니다.
@@ -169,6 +184,36 @@ public class AdlibTestProjectActivity extends AdlibActivity {
         });
         */
         
+    }
+    
+    protected void load()
+    {
+    	
+    	// 전면광고를 호출합니다.
+		loadInterstitialAd();
+	
+    	/*
+		// optional : 전면광고의 수신 성공, 실패 이벤트 처리가 필요한 경우엔 handler를 이용하실 수 있습니다.
+		loadInterstitialAd(new Handler() {
+			public void handleMessage(Message message) {
+	    		try
+	    		{
+	    			switch (message.what) {
+		   			case 1:
+		   				Toast.makeText(AdlibTestProjectActivity.this, "광고수신 성공 :)", Toast.LENGTH_SHORT).show();
+		   		    	break;
+		   			case -1:
+		   				Toast.makeText(AdlibTestProjectActivity.this, "광고수신 실패 :(", Toast.LENGTH_SHORT).show();
+		   				break;
+		    		}
+	    		}
+	    		catch(Exception e)
+	    		{
+	    			
+	    		}
+	    	}
+		});
+		*/
     }
     
     @Override
