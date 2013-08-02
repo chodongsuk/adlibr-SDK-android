@@ -199,10 +199,10 @@ public class AdlibTestProjectActivity extends AdlibActivity {
 	    		try
 	    		{
 	    			switch (message.what) {
-		   			case 1:
+		   			case AdlibManager.DID_SUCCEED:
 		   				Toast.makeText(AdlibTestProjectActivity.this, "광고수신 성공 :)", Toast.LENGTH_SHORT).show();
 		   		    	break;
-		   			case -1:
+		   			case AdlibManager.DID_ERROR:
 		   				Toast.makeText(AdlibTestProjectActivity.this, "광고수신 실패 :(", Toast.LENGTH_SHORT).show();
 		   				break;
 		    		}
