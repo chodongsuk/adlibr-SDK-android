@@ -2,6 +2,7 @@ package test.adlib.project;
 
 import com.mocoplex.adlib.AdlibActivity;
 import com.mocoplex.adlib.AdlibConfig;
+import com.mocoplex.adlib.AdlibManager;
 import com.mocoplex.adlib.AdlibRewardIcon;
 import com.mocoplex.adlib.AdlibRewardLink;
 import com.mocoplex.adlib.AdlibManager.AdlibVersionCheckingListener;
