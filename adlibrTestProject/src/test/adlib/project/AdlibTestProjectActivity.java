@@ -96,6 +96,11 @@ public class AdlibTestProjectActivity extends AdlibActivity {
     // AndroidManifest.xml에 권한과 activity를 추가하여야 합니다.     
     protected void initAds()
     {
+    	// AdlibActivity 를 상속받은 액티비티이거나,
+    	// 일반 Activity 에서는 AdlibManager 를 동적으로 생성한 후 아래 코드가 실행되어야 합니다. (AdlibTestProjectActivity4.java)
+
+    	// Manifest 에서 <uses-permission android:name="android.permission.GET_TASKS" /> 부분 권한 추가를 확인해주세요.
+
     	// 광고 스케줄링 설정을 위해 아래 내용을 프로그램 실행시 한번만 실행합니다. (처음 실행되는 activity에서 한번만 호출해주세요.)    	
     	// 광고 subview 의 패키지 경로를 설정합니다. (실제로 작성된 패키지 경로로 수정해주세요.)
 
@@ -121,69 +126,26 @@ public class AdlibTestProjectActivity extends AdlibActivity {
          Locale locale = this.getResources().getConfiguration().locale;
          String lc = locale.getLanguage();
          
-         if(lc.equals("ko"))
+         // http://developer.android.com/reference/java/util/Locale.html
+         if(lc.indexOf("ko") == 0)
          {
-         // 다국어 스케줄을 설정하시려면 애드립에서 별도로 키를 생성하시고 해당 키를 적용해주세요.
-         AdlibConfig.getInstance().setAdlibKey("대한민국 광고 스케줄링");
+        	 // 다국어 스케줄을 설정하시려면 애드립에서 별도로 키를 생성하시고 해당 키를 적용해주세요.
+        	 // 한국
+        	 AdlibConfig.getInstance().setAdlibKey("한국");
+         }
+         else if(lc.indexOf("zh") == 0)
+         {
+        	 // 다국어 스케줄을 설정하시려면 애드립에서 별도로 키를 생성하시고 해당 키를 적용해주세요.
+        	 // 중국
+        	 AdlibConfig.getInstance().setAdlibKey("중국");
          }
          else
          {
-         // 다국어 스케줄을 설정하시려면 애드립에서 별도로 키를 생성하시고 해당 키를 적용해주세요.
-         AdlibConfig.getInstance().setAdlibKey("그밖의 나라");
+        	 // 다국어 스케줄을 설정하시려면 애드립에서 별도로 키를 생성하시고 해당 키를 적용해주세요.
+        	 // 그밖에..
+        	 AdlibConfig.getInstance().setAdlibKey("...기타...");
          }
          */
-
-        
-        /* 
-         * deprecated : SMART* dialog 를 통해 보다 쉽게 버전관리를 할 수 있습니다.
-         */
-
-		/*
-		// 광고뷰가 없는 activity 에서는 listener 대신 아래와 같은 방법으로 설정한 현재 버전을 가져올 수 있습니다.
-		// 애드립에서 설정한 버전정보를 아래와 같이 수신합니다.
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-          @Override
-          public void run() {
-       	  	String ver = _amanager.getCurrentVersion();
-          }
-        }, 1000);
-	 	*/        
-        /*
-        // 클라이언트 버전관리를 위한 리스너 추가
-        // 서버에서 클라이언트 버전을 관리하여 사용자에게 업데이트를 안내할 수 있습니다. (option)
-        this.setVersionCheckingListner(new AdlibVersionCheckingListener(){
-
-			@Override
-			public void gotCurrentVersion(String ver) {
-				
-				// 서버에서 설정한 버전정보를 수신했습니다.
-				// 기존 클라이언트 버전을 확인하여 적절한 작업을 수행하세요.
-				double current = 0.9;
-				
-				double newVersion = Double.parseDouble(ver);				
-				if(current >= newVersion)
-					return;
-					
-				
-				new AlertDialog.Builder(AdlibTestProjectActivity.this)
-			    .setTitle("버전 업데이트")
-			    .setMessage("프로그램을 업데이트 하시겠습니까?")
-					    .setPositiveButton("yes", new DialogInterface.OnClickListener() {
-					      public void onClick(DialogInterface dialog, int whichButton) {
-					    	  // 마켓 또는 안내 페이지로 이동합니다.
-					      }
-					    })	    
-					    .setNegativeButton("no", new DialogInterface.OnClickListener() {
-					      public void onClick(DialogInterface dialog, int whichButton) {
-					    	  // 업데이트를 하지 않습니다.
-					      }
-					    })	    
-			    .show();
-				
-			}
-        });
-        */
         
     }
     
