@@ -17,6 +17,13 @@ import android.view.Display;
 import android.view.View;
 import android.widget.Toast;
 
+/*
+* 중요 *
+안드로이드 4.2 이상에서 WebView의 JavascriptInterface를 지원하기 위해 
+프로젝트 설정의 빌드 타겟을 17이상으로 설정해야 합니다.
+(최신버전 android SDK 이용 권장)
+*/
+
 // 광고 스케줄링을 위해 AdlibActivity 를 상속받은 activity 를 생성합니다.
 public class AdlibTestProjectActivity extends AdlibActivity {
     /** Called when the activity is first created. */
