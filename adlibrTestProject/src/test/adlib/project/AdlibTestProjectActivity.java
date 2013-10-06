@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.widget.Toast;
@@ -172,12 +173,15 @@ public class AdlibTestProjectActivity extends AdlibActivity {
 	    		try
 	    		{
 	    			switch (message.what) {
-		   			case AdlibManager.DID_SUCCEED:
-		   				Toast.makeText(AdlibTestProjectActivity.this, "광고수신 성공 :)", Toast.LENGTH_SHORT).show();
-		   		    	break;
-		   			case AdlibManager.DID_ERROR:
-		   				Toast.makeText(AdlibTestProjectActivity.this, "광고수신 실패 :(", Toast.LENGTH_SHORT).show();
-		   				break;
+                    case AdlibManager.DID_SUCCEED:
+                        Log.d("ADLIBr", "onReceiveAd " + (String)message.obj);
+                        break;
+                    case AdlibManager.DID_ERROR:
+                        Log.d("ADLIBr", "onFailedToReceiveAd " + (String)message.obj);
+                        break;
+                    case AdlibManager.INTERSTITIAL_CLOSED:
+                        Log.d("ADLIBr", "onClosedAd " + (String)message.obj);
+                        break;
 		    		}
 	    		}
 	    		catch(Exception e)
