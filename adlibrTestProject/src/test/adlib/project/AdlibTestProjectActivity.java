@@ -129,34 +129,7 @@ public class AdlibTestProjectActivity extends AdlibActivity {
         // SMART* dialog 노출 시점 선택시 / setAdlibKey 키가 호출되는 activity 가 시작 activity 이며 해당 activity가 종료되면 app 종료로 인식합니다.
         // adlibr.com 에서 발급받은 api 키를 입력합니다.
         // https://sec.adlibr.com/admin/dashboard.jsp
-        AdlibConfig.getInstance().setAdlibKey("ADLIB - API - KEY");        
-                
-
-         /*
-         // Locale 별 다른 스케줄을 적용하신다면,
-         Locale locale = this.getResources().getConfiguration().locale;
-         String lc = locale.getLanguage();
-         
-         // http://developer.android.com/reference/java/util/Locale.html
-         if(lc.indexOf("ko") == 0)
-         {
-        	 // 다국어 스케줄을 설정하시려면 애드립에서 별도로 키를 생성하시고 해당 키를 적용해주세요.
-        	 // 한국
-        	 AdlibConfig.getInstance().setAdlibKey("한국");
-         }
-         else if(lc.indexOf("zh") == 0)
-         {
-        	 // 다국어 스케줄을 설정하시려면 애드립에서 별도로 키를 생성하시고 해당 키를 적용해주세요.
-        	 // 중국
-        	 AdlibConfig.getInstance().setAdlibKey("중국");
-         }
-         else
-         {
-        	 // 다국어 스케줄을 설정하시려면 애드립에서 별도로 키를 생성하시고 해당 키를 적용해주세요.
-        	 // 그밖에..
-        	 AdlibConfig.getInstance().setAdlibKey("...기타...");
-         }
-         */
+        AdlibConfig.getInstance().setAdlibKey("ADLIB - API - KEY");
         
     }
     
