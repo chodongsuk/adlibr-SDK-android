@@ -2,6 +2,7 @@ package test.adlib.project;
 
 import com.mocoplex.adlib.AdlibActivity;
 import com.mocoplex.adlib.AdlibConfig;
+import com.mocoplex.adlib.AdlibInterstitialView;
 import com.mocoplex.adlib.AdlibManager;
 import com.mocoplex.adlib.AdlibRewardIcon;
 import com.mocoplex.adlib.AdlibRewardLink;
@@ -15,7 +16,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 /*
