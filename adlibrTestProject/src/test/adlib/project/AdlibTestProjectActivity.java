@@ -99,6 +99,17 @@ public class AdlibTestProjectActivity extends AdlibActivity {
         	
         };
         this.findViewById(R.id.btn5).setOnClickListener(cl);
+        
+        cl = new View.OnClickListener()
+        {
+			@Override
+			public void onClick(View v) {
+				
+				loadAPI();
+			}
+        	
+        };
+        this.findViewById(R.id.btn6).setOnClickListener(cl);
     }
     
     // AndroidManifest.xml에 권한과 activity를 추가하여야 합니다.     
@@ -164,6 +175,65 @@ public class AdlibTestProjectActivity extends AdlibActivity {
 	    	}
 		});
 		*/
+    }
+    
+    protected void loadAPI()
+    {
+        // 전면배너를 이용하여 다른 형태로 구성하고 싶으신 경우 사용하는 method 입니다.
+        
+        // getInterstitialView(width(dp), maxHeight(dp), handler);
+        // width의 비율에 맞춰 height가 계산되어집니다.
+        // 비율에 맞는 height가 maxHeight보다 클 경우에는 maxHeight에 맞춰 비율이 변형된 광고가 노출됩니다.
+    	getInterstitialView(200, 300, new Handler() {
+    		public void handleMessage(Message message) {
+	    		try
+	    		{
+	    			switch (message.what) {
+                        case AdlibManager.DID_SUCCEED:
+                            AdlibInterstitialView iView = (AdlibInterstitialView)message.obj;
+                            
+                            // getViewHeight 함수를 통해 실제 노출될 height 값(dp)을 알 수 있습니다.
+                            int viewHeihgt = iView.getViewHeight();
+                            
+                            LinearLayout layout = new LinearLayout(AdlibTestProjectActivity.this);
+                            layout.setLayoutParams(new LayoutParams(dpToPx(200), dpToPx(viewHeihgt)));
+                            layout.setGravity(Gravity.CENTER);
+                            layout.addView(iView);
+                            
+                            AlertDialog.Builder builder = new AlertDialog.Builder(AdlibTestProjectActivity.this);
+                            builder.setTitle("Title");
+                            builder.setView(layout);
+                            
+                            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    
+                                }
+                            });
+                            
+                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    
+                                }
+                            });
+                            
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                            alert.getWindow().setLayout(dpToPx(230), LayoutParams.WRAP_CONTENT);
+                            
+                            break;
+                        case AdlibManager.DID_ERROR:
+                            Toast.makeText(AdlibTestProjectActivity.this, "광고수신 실패 :(", Toast.LENGTH_SHORT).show();
+                            break;
+		    		}
+	    		}
+	    		catch(Exception e)
+	    		{
+	    			
+	    		}
+	    	}
+    	});
     }
     
     @Override
