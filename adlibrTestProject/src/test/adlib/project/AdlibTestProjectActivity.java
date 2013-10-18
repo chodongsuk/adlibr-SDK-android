@@ -197,16 +197,11 @@ public class AdlibTestProjectActivity extends AdlibActivity {
                             AdlibInterstitialView iView = (AdlibInterstitialView)message.obj;
                             
                             // getViewHeight 함수를 통해 실제 노출될 height 값(dp)을 알 수 있습니다.
-                            int viewHeight = iView.getViewHeight();
-                            
-                            LinearLayout layout = new LinearLayout(AdlibTestProjectActivity.this);
-                            layout.setLayoutParams(new LayoutParams(dpToPx(200), dpToPx(viewHeight)));
-                            layout.setGravity(Gravity.CENTER);
-                            layout.addView(iView);
+                            //int viewHeight = iView.getViewHeight();
                             
                             AlertDialog.Builder builder = new AlertDialog.Builder(AdlibTestProjectActivity.this);
                             builder.setTitle("Title");
-                            builder.setView(layout);
+                            builder.setView(iView);
                             
                             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
