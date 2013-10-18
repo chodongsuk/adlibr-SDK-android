@@ -186,8 +186,8 @@ public class AdlibTestProjectActivity extends AdlibActivity {
         // 전면배너를 이용하여 다른 형태로 구성하고 싶으신 경우 사용하는 method 입니다.
         
         // getInterstitialView(width(dp), maxHeight(dp), handler);
-        // width의 비율에 맞춰 height가 계산되어집니다.
-        // 비율에 맞는 height가 maxHeight보다 클 경우에는 maxHeight에 맞춰 비율이 변형된 광고가 노출됩니다.
+        // width의 비율에 맞춰 height가 계산되어진 view를 반환합니다.
+        // 비율에 맞는 height가 maxHeight보다 클 경우에는 maxHeight에 맞춰 비율이 변형된 view를 반환합니다.
     	getInterstitialView(200, 300, new Handler() {
     		public void handleMessage(Message message) {
 	    		try
