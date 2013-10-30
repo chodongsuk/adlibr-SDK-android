@@ -5,6 +5,7 @@ import com.mocoplex.adlib.AdlibConfig;
 import com.mocoplex.adlib.AdlibInterstitialView;
 import com.mocoplex.adlib.AdlibManager;
 import com.mocoplex.adlib.AdlibRewardIcon;
+import com.mocoplex.adlib.AdlibRewardIconView;
 import com.mocoplex.adlib.AdlibRewardLink;
 import com.mocoplex.adlib.AdlibManager.AdlibVersionCheckingListener;
 
@@ -17,6 +18,7 @@ import android.os.Message;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 /*
@@ -28,6 +30,10 @@ import android.widget.Toast;
 
 // 광고 스케줄링을 위해 AdlibActivity 를 상속받은 activity 를 생성합니다.
 public class AdlibTestProjectActivity extends AdlibActivity {
+	
+	RelativeLayout iconBack;
+	AdlibRewardIconView iconView;
+	
     /** Called when the activity is first created. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,7 @@ public class AdlibTestProjectActivity extends AdlibActivity {
 			public void onClick(View v) {
 				
 				Intent in = new Intent(AdlibTestProjectActivity.this, AdlibTestProjectActivity2.class);
-				startActivity(in);				
+				startActivity(in);
 			}
         	
         };
@@ -59,7 +65,7 @@ public class AdlibTestProjectActivity extends AdlibActivity {
 			public void onClick(View v) {
 				
 				Intent in = new Intent(AdlibTestProjectActivity.this, AdlibTestProjectActivity3.class);
-				startActivity(in);				
+				startActivity(in);
 			}
         	
         };
@@ -71,7 +77,7 @@ public class AdlibTestProjectActivity extends AdlibActivity {
 			public void onClick(View v) {
 				
 				Intent in = new Intent(AdlibTestProjectActivity.this, AdlibTestProjectActivity4.class);
-				startActivity(in);				
+				startActivity(in);
 			}
         	
         };
@@ -95,7 +101,7 @@ public class AdlibTestProjectActivity extends AdlibActivity {
 			@Override
 			public void onClick(View v) {
 				
-				load();
+				showIcon();
 			}
         	
         };
@@ -106,11 +112,33 @@ public class AdlibTestProjectActivity extends AdlibActivity {
 			@Override
 			public void onClick(View v) {
 				
-				loadAPI();
+				hideIcon();
 			}
         	
         };
         this.findViewById(R.id.btn6).setOnClickListener(cl);
+        
+        cl = new View.OnClickListener()
+        {
+			@Override
+			public void onClick(View v) {
+				
+				load();
+			}
+        	
+        };
+        this.findViewById(R.id.btn7).setOnClickListener(cl);
+        
+        cl = new View.OnClickListener()
+        {
+			@Override
+			public void onClick(View v) {
+				
+				loadAPI();
+			}
+        	
+        };
+        this.findViewById(R.id.btn8).setOnClickListener(cl);
     }
     
     // AndroidManifest.xml에 권한과 activity를 추가하여야 합니다.     
@@ -141,7 +169,8 @@ public class AdlibTestProjectActivity extends AdlibActivity {
         // SMART* dialog 노출 시점 선택시 / setAdlibKey 키가 호출되는 activity 가 시작 activity 이며 해당 activity가 종료되면 app 종료로 인식합니다.
         // adlibr.com 에서 발급받은 api 키를 입력합니다.
         // https://sec.adlibr.com/admin/dashboard.jsp
-        AdlibConfig.getInstance().setAdlibKey("ADLIB - API - KEY");
+        // ADLIB - API - KEY 설정
+        AdlibConfig.getInstance().setAdlibKey("5270b730e4b005db49dd399d");  //  <-- 테스트 키 입니다.
         
     }
     
@@ -230,6 +259,55 @@ public class AdlibTestProjectActivity extends AdlibActivity {
 	    		}
 	    	}
     	});
+    }
+    
+    protected void showIcon()
+    {
+    	hideIcon();
+    	
+    	Handler handler = new Handler() {
+    		public void handleMessage(Message message)
+    		{
+    			try
+    			{
+    				switch (message.what) {
+		   			case AdlibManager.DID_SUCCEED:
+		   				iconView = (AdlibRewardIconView)message.obj;
+		   				
+		   				RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(iconView.getWidthSize(), iconView.getHeightSize());
+		   				params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+		   				params.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+		   				params.leftMargin = dpToPx(40);
+		   				params.topMargin = dpToPx(40);
+		   				
+		   				if(iconBack == null)
+		   				{
+			   				iconBack = new RelativeLayout(AdlibTestProjectActivity.this);
+			   				addContentView(iconBack, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+		   				}
+		   				iconBack.addView(iconView, params);
+		   				break;
+		   			case AdlibManager.DID_ERROR:
+		   				break;
+    				}
+    			}
+    			catch(Exception e)
+    			{
+    				
+    			}
+    		}
+    	};
+    	
+    	AdlibRewardLink.getInstance().getRewardLinkInfo(this, "519c29ffe4b00e029838e9ed", handler);
+    }
+    
+    protected void hideIcon()
+    {
+    	if(iconBack != null)
+    	{
+    		iconBack.removeAllViews();
+    		iconView = null;
+    	}
     }
     
     @Override
