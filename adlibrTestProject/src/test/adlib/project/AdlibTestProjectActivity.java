@@ -139,6 +139,18 @@ public class AdlibTestProjectActivity extends AdlibActivity {
         	
         };
         this.findViewById(R.id.btn8).setOnClickListener(cl);
+        
+        cl = new View.OnClickListener()
+        {
+			@Override
+			public void onClick(View v) {
+				
+				Intent in = new Intent(AdlibTestProjectActivity.this, AdlibTestProjectActivity5.class);
+				startActivity(in);
+			}
+        	
+        };
+        this.findViewById(R.id.btn9).setOnClickListener(cl);
     }
     
     // AndroidManifest.xml에 권한과 activity를 추가하여야 합니다.     
