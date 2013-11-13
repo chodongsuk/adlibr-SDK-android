@@ -203,9 +203,14 @@ public class AdlibTestProjectActivity extends AdlibActivity {
                     case AdlibManager.DID_SUCCEED:
                         Log.d("ADLIBr", "onReceiveAd " + (String)message.obj);
                         break;
+                    // 전면배너 스케줄링 사용시, 각각의 플랫폼의 수신 실패 이벤트를 받습니다.
                     case AdlibManager.DID_ERROR:
                         Log.d("ADLIBr", "onFailedToReceiveAd " + (String)message.obj);
                         break;
+                    // 전면배너 스케줄로 설정되어있는 모든 플랫폼의 수신이 실패했을 경우 이벤트를 받습니다.
+                    case AdlibManager.INTERSTITIAL_FAILED:
+                    	Log.d("ADLIBr", "All Failed.");
+                    	break;
                     case AdlibManager.INTERSTITIAL_CLOSED:
                         Log.d("ADLIBr", "onClosedAd " + (String)message.obj);
                         break;
