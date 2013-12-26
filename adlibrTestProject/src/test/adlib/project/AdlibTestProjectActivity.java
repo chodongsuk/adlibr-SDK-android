@@ -202,11 +202,11 @@ public class AdlibTestProjectActivity extends AdlibActivity {
     {
     	
     	// 전면광고를 호출합니다.
-		loadInterstitialAd();
+		loadFullInterstitialAd();
 	
     	/*
 		// optional : 전면광고의 수신 성공, 실패 이벤트 처리가 필요한 경우엔 handler를 이용하실 수 있습니다.
-		loadInterstitialAd(new Handler() {
+		loadFullInterstitialAd(new Handler() {
 			public void handleMessage(Message message) {
 	    		try
 	    		{
