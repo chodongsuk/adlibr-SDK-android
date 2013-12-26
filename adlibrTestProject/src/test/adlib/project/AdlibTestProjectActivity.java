@@ -151,6 +151,13 @@ public class AdlibTestProjectActivity extends AdlibActivity {
         	
         };
         this.findViewById(R.id.btn9).setOnClickListener(cl);
+        
+        // 애드립 팝 배너를 호출 합니다.
+        // setAdlibPop... 메소드는 생략 가능하며, 생략시 default값으로 setting 됩니다.
+        setAdlibPopFrameColor(Color.DKGRAY);  // default 는 0xff000000
+        setAdlibPopCloseButtonStyle(AdlibPop.BTN_WHITE);  // default는 BTN_WHITE
+        setAdlibPopAnimationType(AdlibPop.ANIMATION_SLIDE, AdlibPop.ANIMATION_SLIDE); // default는 ANIMATION_SLIDE
+        showAdlibPop(AdlibPop.ALIGN_BOTTOM, 30);
     }
     
     // AndroidManifest.xml에 권한과 activity를 추가하여야 합니다.     
@@ -344,15 +351,14 @@ public class AdlibTestProjectActivity extends AdlibActivity {
 		// 리워드 링크 아이콘을 배치하기 위해서는 Activity 의 onResume 에서 rewardLink(Context ctx, String rewardLinkId, int x, int y, int align) 를 호출해 주세요.
 		
 		// x축, y축 padding은 아래와 같이 pixel 값(+)으로 직접 계산해 주셔야 합니다.
-		Display mDisplay= getWindowManager().getDefaultDisplay();
-    	int width = mDisplay.getWidth();
+		int w = dpToPx(40);
     	int h = dpToPx(90);
     	
     	// rewardLinkId는 애드립 홈페이지에서 발급받은 링크 ID로 대체하세요.
     	// align 위치를 기준으로 x축으로 x pixel, y축으로 y pixel만큼 이동한 지점에 아이콘이 배치됩니다.
     	// 아이콘 위치는 아이콘의 중심점 기준입니다.
     	// 아래의 경우 좌측 하단을 중심으로 아이콘의 중심점이 x축으로 디바이스 width의 절반만큼, y축으로 90dp만큼 이동한 위치에 아이콘이 배치됩니다.
-		AdlibRewardLink.getInstance().rewardLink(this, "5184d07ae4b03c9009dfa5ae", width/2, h, AdlibRewardIcon.ALIGN_LEFT_BOTTOM);  //  <-- 테스트 키 입니다.
+		AdlibRewardLink.getInstance().rewardLink(this, "5184d07ae4b03c9009dfa5ae", w, h, AdlibRewardIcon.ALIGN_LEFT_TOP);  //  <-- 테스트 키 입니다.
 		super.onResume();
 	}
 	
