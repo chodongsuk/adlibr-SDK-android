@@ -306,8 +306,8 @@ public class AdlibTestProjectActivity extends AdlibActivity {
 		   				RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(iconView.getWidthSize(), iconView.getHeightSize());
 		   				params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
 		   				params.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
-		   				params.leftMargin = dpToPx(40);
-		   				params.topMargin = dpToPx(40);
+		   				params.leftMargin = dpToPx(10);
+		   				params.topMargin = dpToPx(140);
 		   				
 		   				if(iconBack == null)
 		   				{
@@ -360,7 +360,7 @@ public class AdlibTestProjectActivity extends AdlibActivity {
     	// align 위치를 기준으로 x축으로 x pixel, y축으로 y pixel만큼 이동한 지점에 아이콘이 배치됩니다.
     	// 아이콘 위치는 아이콘의 중심점 기준입니다.
     	// 아래의 경우 좌측 하단을 중심으로 아이콘의 중심점이 x축으로 디바이스 width의 절반만큼, y축으로 90dp만큼 이동한 위치에 아이콘이 배치됩니다.
-		AdlibRewardLink.getInstance().rewardLink(this, "5184d07ae4b03c9009dfa5ae", w, h, AdlibRewardIcon.ALIGN_RIGHT_TOP);  //  <-- 테스트 키 입니다.
+		AdlibRewardLink.getInstance().rewardLink(this, "5184d07ae4b03c9009dfa5ae", w, h, AdlibRewardIcon.ALIGN_LEFT_TOP);  //  <-- 테스트 키 입니다.
 		super.onResume();
 	}
 	
