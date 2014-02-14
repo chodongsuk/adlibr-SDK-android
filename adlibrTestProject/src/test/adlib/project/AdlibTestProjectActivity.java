@@ -160,6 +160,31 @@ public class AdlibTestProjectActivity extends AdlibActivity {
         setAdlibPopCloseButtonStyle(AdlibPop.BTN_WHITE);  // default는 BTN_WHITE
         setAdlibPopAnimationType(AdlibPop.ANIMATION_SLIDE, AdlibPop.ANIMATION_SLIDE); // default는 ANIMATION_SLIDE
         showAdlibPop(AdlibPop.ALIGN_BOTTOM, 30);
+        /*
+        // 팝배너의 수신 성공, 실패 이벤트 처리가 필요한 경우엔 handler를 이용하실 수 있습니다.
+        showAdlibPop(AdlibPop.ALIGN_BOTTOM, 30, new Handler() {
+			public void handleMessage(Message message) {
+	    		try
+	    		{
+	    			switch (message.what) {
+		   			case AdlibManager.DID_SUCCEED:
+		   				Log.d("ADLIBr", "onReceivedPopBanner");
+		   		    	break;
+		   			case AdlibManager.DID_ERROR:
+		   				Log.d("ADLIBr", "onFailedPopBanner");
+		   				break;
+		   			case AdlibManager.POP_CLOSED:
+		   				Log.d("ADLIBr", "onClosedPopBanner");
+		   				break;
+		    		}
+	    		}
+	    		catch(Exception e)
+	    		{
+	    			
+	    		}
+	    	}
+		});
+		*/
     }
     
     // AndroidManifest.xml에 권한과 activity를 추가하여야 합니다.     
